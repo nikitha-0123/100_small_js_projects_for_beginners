@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Flipper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-center">
+            <h4>Color Flipper</h4>
+            <div class="nav-links">
+                <button class="mode-btn active" data-mode="simple">Simple</button>
+                <button class="mode-btn" data-mode="hex">Hex</button>
+                <button class="mode-btn" data-mode="rgb">RGB</button>
+                <button class="mode-btn" data-mode="hsl">HSL</button>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <h2>Background Color: <span class="color-value">#FFFFFF</span></h2>
+            <button class="btn" id="btn">Change Color</button>
+            <div class="color-history">
+                <h3>Recent Colors:</h3>
+                <div class="history-container"></div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html> 

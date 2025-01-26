@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Demo images from Unsplash -->
+            <div class="slide active" data-index="0">
+                <img src="nature.jpg" alt="Nature">
+                <div class="slide-content">
+                    <h2>Beautiful Nature</h2>
+                    <p>Explore the wonders of nature</p>
+                </div>
+            </div>
+            <div class="slide" data-index="1">
+                <img src="urban.jpg" alt="City">
+                <div class="slide-content">
+                    <h2>Urban Life</h2>
+                    <p>Experience city vibes</p>
+                </div>
+            </div>
+            <div class="slide" data-index="2">
+                <img src="food.jpg" alt="Food">
+                <div class="slide-content">
+                    <h2>Delicious Food</h2>
+                    <p>Taste the difference</p>
+                </div>
+            </div>
+            <div class="slide" data-index="3">
+                <img src="travel.jpg" alt="Travel">
+                <div class="slide-content">
+                    <h2>Adventure Awaits</h2>
+                    <p>Discover new places</p>
+                </div>
+            </div>
+            <div class="slide" data-index="4">
+                <img src="tech.jpg" alt="Technology">
+                <div class="slide-content">
+                    <h2>Modern Tech</h2>
+                    <p>Embrace innovation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="nav-btn prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-btn next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Dots Navigation -->
+        <div class="dots-container"></div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn autoplay">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

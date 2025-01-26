@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <h1>Welcome to the Quiz</h1>
+            <div class="category-selection">
+                <h2>Select a Category</h2>
+                <div class="categories">
+                    <button class="category-btn" data-category="general">General Knowledge</button>
+                    <button class="category-btn" data-category="science">Science</button>
+                    <button class="category-btn" data-category="history">History</button>
+                    <button class="category-btn" data-category="geography">Geography</button>
+                </div>
+            </div>
+            <div class="difficulty-selection">
+                <h2>Select Difficulty</h2>
+                <div class="difficulties">
+                    <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                    <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                    <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                </div>
+            </div>
+            <button id="startQuiz" class="start-btn" disabled>Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="quiz-screen hidden" id="quizScreen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="question-count">
+                        Question <span id="currentQuestion">1</span>/<span id="totalQuestions">10</span>
+                    </div>
+                </div>
+                <div class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timeLeft">30</span>s
+                </div>
+                <div class="score">
+                    Score: <span id="currentScore">0</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p id="question" class="question">Question text goes here?</p>
+                <div class="options-container" id="options">
+                    <!-- Options will be added dynamically -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="nextBtn" class="next-btn" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen hidden" id="resultsScreen">
+            <h2>Quiz Complete!</h2>
+            <div class="results-summary">
+                <div class="result-item">
+                    <i class="fas fa-trophy"></i>
+                    <div class="result-info">
+                        <span class="label">Final Score</span>
+                        <span class="value" id="finalScore">0</span>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="result-info">
+                        <span class="label">Correct Answers</span>
+                        <span class="value" id="correctAnswers">0</span>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="result-info">
+                        <span class="label">Time Taken</span>
+                        <span class="value" id="timeTaken">0:00</span>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <i class="fas fa-percentage"></i>
+                    <div class="result-info">
+                        <span class="label">Accuracy</span>
+                        <span class="value" id="accuracy">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="answer-review">
+                <h3>Review Answers</h3>
+                <div class="review-container" id="reviewContainer">
+                    <!-- Review items will be added dynamically -->
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="restartQuiz" class="restart-btn">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+                <button id="shareResults" class="share-btn">
+                    <i class="fas fa-share"></i> Share Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

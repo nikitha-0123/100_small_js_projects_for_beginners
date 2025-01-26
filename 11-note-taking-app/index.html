@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-book"></i>
+                    <h1>Notes</h1>
+                </div>
+                <button id="newNoteBtn" class="new-note-btn">
+                    <i class="fas fa-plus"></i>
+                    <span>New Note</span>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <!-- Search -->
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search notes...">
+                </div>
+
+                <!-- Categories -->
+                <div class="categories">
+                    <h2>Categories</h2>
+                    <div class="category-list" id="categoryList">
+                        <button class="category-item active" data-category="all">
+                            <i class="fas fa-layer-group"></i>
+                            <span>All Notes</span>
+                            <span class="note-count">0</span>
+                        </button>
+                        <button class="category-item" data-category="personal">
+                            <i class="fas fa-user"></i>
+                            <span>Personal</span>
+                            <span class="note-count">0</span>
+                        </button>
+                        <button class="category-item" data-category="work">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Work</span>
+                            <span class="note-count">0</span>
+                        </button>
+                        <button class="category-item" data-category="study">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Study</span>
+                            <span class="note-count">0</span>
+                        </button>
+                    </div>
+                    <button id="addCategoryBtn" class="add-category-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Category</span>
+                    </button>
+                </div>
+
+                <!-- Notes List -->
+                <div class="notes-list" id="notesList">
+                    <!-- Notes will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <button id="settingsBtn" class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-book-open"></i>
+                <h2>No Note Selected</h2>
+                <p>Select a note from the list or create a new one</p>
+                <button class="new-note-btn">
+                    <i class="fas fa-plus"></i>
+                    <span>Create New Note</span>
+                </button>
+            </div>
+
+            <!-- Note Editor -->
+            <div class="note-editor hidden" id="noteEditor">
+                <div class="editor-header">
+                    <input type="text" id="noteTitle" placeholder="Note title..." class="note-title">
+                    <div class="editor-actions">
+                        <div class="category-selector">
+                            <button id="categorySelector" class="category-btn">
+                                <i class="fas fa-folder"></i>
+                                <span>Category</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="category-dropdown hidden" id="categoryDropdown">
+                                <!-- Categories will be added dynamically -->
+                            </div>
+                        </div>
+                        <button id="deleteNoteBtn" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-toolbar">
+                    <div class="toolbar-group">
+                        <button data-action="bold" title="Bold"><i class="fas fa-bold"></i></button>
+                        <button data-action="italic" title="Italic"><i class="fas fa-italic"></i></button>
+                        <button data-action="strikethrough" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button data-action="heading" title="Heading"><i class="fas fa-heading"></i></button>
+                        <button data-action="quote" title="Quote"><i class="fas fa-quote-right"></i></button>
+                        <button data-action="code" title="Code"><i class="fas fa-code"></i></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button data-action="list-ul" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                        <button data-action="list-ol" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        <button data-action="task" title="Task List"><i class="fas fa-tasks"></i></button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button data-action="link" title="Link"><i class="fas fa-link"></i></button>
+                        <button data-action="image" title="Image"><i class="fas fa-image"></i></button>
+                        <button data-action="table" title="Table"><i class="fas fa-table"></i></button>
+                    </div>
+                </div>
+                <textarea id="noteContent" placeholder="Start writing your note here..."></textarea>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Category Modal -->
+    <div class="modal hidden" id="addCategoryModal">
+        <div class="modal-content">
+            <h2>Add New Category</h2>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="categoryName">Category Name</label>
+                    <input type="text" id="categoryName" placeholder="Enter category name">
+                </div>
+                <div class="input-group">
+                    <label for="categoryIcon">Icon</label>
+                    <div class="icon-selector" id="iconSelector">
+                        <button class="selected"><i class="fas fa-folder"></i></button>
+                        <button><i class="fas fa-book"></i></button>
+                        <button><i class="fas fa-file"></i></button>
+                        <button><i class="fas fa-star"></i></button>
+                        <button><i class="fas fa-heart"></i></button>
+                        <button><i class="fas fa-flag"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="secondary-btn" id="cancelAddCategory">Cancel</button>
+                <button class="primary-btn" id="confirmAddCategory">Add Category</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal hidden" id="deleteModal">
+        <div class="modal-content">
+            <h2>Delete Note</h2>
+            <p>Are you sure you want to delete this note? This action cannot be undone.</p>
+            <div class="modal-footer">
+                <button class="secondary-btn" id="cancelDelete">Cancel</button>
+                <button class="danger-btn" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settingsModal">
+        <div class="modal-content">
+            <h2>Settings</h2>
+            <div class="modal-body">
+                <div class="settings-group">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <label>Theme</label>
+                        <select id="themeSelect">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="system">System</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>Font Size</label>
+                        <select id="fontSizeSelect">
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="settings-group">
+                    <h3>Editor</h3>
+                    <div class="setting-item">
+                        <label>Auto Save</label>
+                        <label class="switch">
+                            <input type="checkbox" id="autoSaveToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Spell Check</label>
+                        <label class="switch">
+                            <input type="checkbox" id="spellCheckToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="primary-btn" id="closeSettings">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

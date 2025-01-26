@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Recipe App</h1>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search recipes...">
+                <button id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <nav>
+                <button id="favoritesBtn" class="nav-btn">
+                    <i class="fas fa-heart"></i>
+                    <span>Favorites</span>
+                </button>
+                <button id="filtersBtn" class="nav-btn">
+                    <i class="fas fa-filter"></i>
+                    <span>Filters</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Filters Panel -->
+        <div class="filters-panel hidden" id="filtersPanel">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <div class="filter-options" id="categoryFilters">
+                    <label><input type="checkbox" value="breakfast"> Breakfast</label>
+                    <label><input type="checkbox" value="lunch"> Lunch</label>
+                    <label><input type="checkbox" value="dinner"> Dinner</label>
+                    <label><input type="checkbox" value="dessert"> Dessert</label>
+                    <label><input type="checkbox" value="snack"> Snack</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Cuisine</h3>
+                <div class="filter-options" id="cuisineFilters">
+                    <label><input type="checkbox" value="italian"> Italian</label>
+                    <label><input type="checkbox" value="mexican"> Mexican</label>
+                    <label><input type="checkbox" value="indian"> Indian</label>
+                    <label><input type="checkbox" value="chinese"> Chinese</label>
+                    <label><input type="checkbox" value="japanese"> Japanese</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Dietary</h3>
+                <div class="filter-options" id="dietaryFilters">
+                    <label><input type="checkbox" value="vegetarian"> Vegetarian</label>
+                    <label><input type="checkbox" value="vegan"> Vegan</label>
+                    <label><input type="checkbox" value="gluten-free"> Gluten-Free</label>
+                    <label><input type="checkbox" value="dairy-free"> Dairy-Free</label>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button id="applyFilters" class="primary-btn">Apply Filters</button>
+                <button id="clearFilters" class="secondary-btn">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Recipe Grid -->
+            <div class="recipe-grid" id="recipeGrid">
+                <!-- Recipe cards will be added dynamically -->
+            </div>
+
+            <!-- Recipe Details Modal -->
+            <div class="modal hidden" id="recipeModal">
+                <div class="modal-content">
+                    <button class="close-btn" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="recipe-details">
+                        <div class="recipe-header">
+                            <img src="" alt="" class="recipe-image">
+                            <div class="recipe-info">
+                                <h2 class="recipe-title"></h2>
+                                <div class="recipe-meta">
+                                    <span class="prep-time">
+                                        <i class="fas fa-clock"></i>
+                                        <span></span>
+                                    </span>
+                                    <span class="servings">
+                                        <i class="fas fa-users"></i>
+                                        <span></span>
+                                    </span>
+                                    <span class="difficulty">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span></span>
+                                    </span>
+                                </div>
+                                <div class="recipe-tags"></div>
+                                <button class="favorite-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="ingredients">
+                                <h3>Ingredients</h3>
+                                <ul class="ingredients-list"></ul>
+                            </div>
+                            <div class="instructions">
+                                <h3>Instructions</h3>
+                                <ol class="instructions-list"></ol>
+                            </div>
+                            <div class="nutrition">
+                                <h3>Nutrition Information</h3>
+                                <div class="nutrition-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading State -->
+        <div class="loading hidden" id="loading">
+            <div class="spinner"></div>
+            <p>Loading recipes...</p>
+        </div>
+
+        <!-- No Results State -->
+        <div class="no-results hidden" id="noResults">
+            <i class="fas fa-search"></i>
+            <h2>No Recipes Found</h2>
+            <p>Try adjusting your search or filters</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

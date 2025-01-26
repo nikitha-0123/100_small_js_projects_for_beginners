@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Enter city name...">
+            <button id="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="location-btn" title="Use current location">
+                <i class="fas fa-location-crosshairs"></i>
+            </button>
+        </div>
+                #please buy an API for this to work properly.
+        <div class="weather-info hidden">
+            <div class="current-weather">
+                <div class="location">
+                    <h2 class="city">London</h2>
+                    <p class="country">GB</p>
+                    <p class="date">Monday, 1 January 2024</p>
+                </div>
+                
+                <div class="weather-main">
+                    <img src="" alt="weather icon" class="weather-icon">
+                    <div class="temperature">
+                        <span class="temp">20</span>
+                        <span class="unit">°C</span>
+                    </div>
+                    <p class="description">Clear Sky</p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail">
+                        <i class="fas fa-temperature-high"></i>
+                        <div class="detail-info">
+                            <span class="label">Feels Like</span>
+                            <span class="value feels-like">22°C</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-droplet"></i>
+                        <div class="detail-info">
+                            <span class="label">Humidity</span>
+                            <span class="value humidity">65%</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-wind"></i>
+                        <div class="detail-info">
+                            <span class="label">Wind Speed</span>
+                            <span class="value wind-speed">5.2 km/h</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-compass"></i>
+                        <div class="detail-info">
+                            <span class="label">Wind Direction</span>
+                            <span class="value wind-direction">NE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast">
+                <h3>5-Day Forecast</h3>
+                <div class="forecast-container"></div>
+            </div>
+
+            <div class="additional-info">
+                <div class="info-item sunrise">
+                    <i class="fas fa-sun"></i>
+                    <div class="info-detail">
+                        <span class="label">Sunrise</span>
+                        <span class="value">06:00 AM</span>
+                    </div>
+                </div>
+                <div class="info-item sunset">
+                    <i class="fas fa-moon"></i>
+                    <div class="info-detail">
+                        <span class="label">Sunset</span>
+                        <span class="value">18:00 PM</span>
+                    </div>
+                </div>
+                <div class="info-item pressure">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                    <div class="info-detail">
+                        <span class="label">Pressure</span>
+                        <span class="value">1015 hPa</span>
+                    </div>
+                </div>
+                <div class="info-item visibility">
+                    <i class="fas fa-eye"></i>
+                    <div class="info-detail">
+                        <span class="label">Visibility</span>
+                        <span class="value">10 km</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-message hidden">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>City not found. Please try again.</p>
+        </div>
+
+        <div class="loading hidden">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <div class="settings">
+            <button id="unit-toggle" title="Toggle temperature unit">
+                <i class="fas fa-exchange-alt"></i> °C / °F
+            </button>
+            <button id="theme-toggle" title="Toggle dark/light theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div class="search-history">
+            <h3>Recent Searches</h3>
+            <div class="history-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
