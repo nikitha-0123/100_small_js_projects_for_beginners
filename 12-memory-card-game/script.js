@@ -4,11 +4,7 @@ const timerDisplay = document.querySelector('.timer');
 const restartBtn = document.querySelector('.restart-btn');
 
 // Enhanced set of card symbols with more visually appealing emojis
-const cardSymbols = [
-    '🌟', '🎮', '🎲', '🎯',
-    '🎨', '🎭', '🎪', '🎬',
-    '🎵', '🎸', '🎹', '🎺'
-];
+const cardSymbols = ['🎮', '🎲', '🎯', '🎨', '🎭', '🎪', '🎟️', '🎬'];
 const cards = [...cardSymbols, ...cardSymbols];
 let flippedCards = [];
 let matchedPairs = 0;
@@ -26,24 +22,34 @@ function shuffleCards(array) {
     return array;
 }
 
+// Create card element
+function createCard(symbol) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    const cardFront = document.createElement('div');
+    cardFront.classList.add('card-front');
+    
+    const cardBack = document.createElement('div');
+    cardBack.classList.add('card-back');
+    cardBack.textContent = symbol;
+    
+    card.appendChild(cardFront);
+    card.appendChild(cardBack);
+    
+    card.dataset.symbol = symbol;
+    card.addEventListener('click', flipCard);
+    
+    return card;
+}
+
 // Initialize game board
 function initializeGame() {
     const shuffledCards = shuffleCards([...cards]);
     gameBoard.innerHTML = '';
     
-    shuffledCards.forEach((symbol, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.dataset.cardIndex = index;
-        card.dataset.symbol = symbol;
-        
-        // Create the symbol element that will be shown when flipped
-        const symbolElement = document.createElement('span');
-        symbolElement.style.display = 'none';
-        symbolElement.textContent = symbol;
-        card.appendChild(symbolElement);
-        
-        card.addEventListener('click', flipCard);
+    shuffledCards.forEach(symbol => {
+        const card = createCard(symbol);
         gameBoard.appendChild(card);
     });
 
@@ -69,11 +75,11 @@ function startTimer() {
 
 // Flip card
 function flipCard() {
-    if (!canFlip || flippedCards.length >= 2 || this.classList.contains('flipped')) return;
+    if (!canFlip || flippedCards.length >= 2 || this.classList.contains('flipped') || this.classList.contains('matched')) {
+        return;
+    }
 
-    const symbolElement = this.querySelector('span');
     this.classList.add('flipped');
-    symbolElement.style.display = 'block';
     flippedCards.push(this);
 
     if (flippedCards.length === 2) {
@@ -97,16 +103,13 @@ function checkMatch() {
         if (matchedPairs === cardSymbols.length) {
             setTimeout(() => {
                 clearInterval(timerInterval);
-                const message = `🎉 Congratulations! 🎉\nYou won in ${moves} moves and ${timer} seconds!`;
-                alert(message);
+                alert(`🎉 Congratulations! 🎉\nYou won in ${moves} moves and ${timer} seconds!`);
             }, 500);
         }
     } else {
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
-            card1.querySelector('span').style.display = 'none';
-            card2.querySelector('span').style.display = 'none';
         }, 1000);
     }
 
