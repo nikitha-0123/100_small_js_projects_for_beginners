@@ -106,14 +106,25 @@ const renderTodos = () => {
 
 // Event listeners
 todoForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const text = todoInput.value.trim();
-    if (text) {
-        addTodo(text);
-        todoInput.value = '';
+    e.preventDefault(); 
+    const text = todoInput.value.trim(); 
+    // 1. Prevent empty input
+    if (text === '') {
+        alert('⚠️ Please enter a task.');
+        return;
     }
-});
 
+    // 2. Prevent duplicate task (case-insensitive)
+    const isDuplicate = todos.some(todo => todo.text.toLowerCase() === text.toLowerCase());
+    if (isDuplicate) {
+        alert('⚠️ This task already exists.');
+        return;
+    }
+
+    // 3. If valid, add the task
+    addTodo(text);
+    todoInput.value = ''; 
+});
 clearCompletedBtn.addEventListener('click', clearCompleted);
 
 filterBtns.forEach(btn => {
